@@ -4,11 +4,12 @@ const getUser = ( req, res, next ) => {
     
     var name =  req.query.name;
 
-    for(let i = 0; i < data.length;  i++) {
-        if(i.name == name) {
-            res.send(data[i]);
-        }
+
+    if (!name) {
+        return res.status(400).send("Usuário não encontrado!")
     }
+    var usuario = data.find(x => x.name === name)
+    res.send(usuario)
 
 };
 
